@@ -1,0 +1,760 @@
+---
+import BioregionLayout from '../layouts/BioregionLayout.astro';
+
+const inscriptionUrl = 'https://framaforms.org/mooc-session-6-automne-2026-pre-inscription-1765805668';
+const siteAdvUrl = 'https://archipelduvivant.org/le-mooc-bioregion/';
+const biotopieUrl = 'https://archipelduvivant.org/formation-biotopie/';
+const mrMondialisationUrl = 'https://mrmondialisation.org/jean-christophe-anna-revolution-bioregionale/';
+
+const modules = [
+  {
+    n: '0',
+    titre: "D'où partez-vous ?",
+    sous: 'Préambule — Questionnaire de prise de conscience',
+    desc: "Avant d'entrer dans la biorégion, on commence par vous : votre rapport au monde, au vivant, au territoire que vous habitez. Un questionnaire de prise de conscience pour mesurer d'où vous partez, et voir à la fin du MOOC tout le chemin parcouru.",
+    tags: ['Auto-évaluation', 'Ancrage personnel'],
+  },
+  {
+    n: '1',
+    titre: 'Utopies : rêvons un peu !',
+    sous: 'Module 1',
+    desc: "On commence par oser la radicalité de l'imaginaire. Qu'est-ce qu'une société vraiment au service du vivant ? On explore des utopies concrètes, des communautés réelles, des récits qui nous sortent du 'pas possible'. Parce que si on ne se permet pas de rêver, on ne changera rien.",
+    tags: ['Utopie', 'Imaginaire', 'Récits'],
+  },
+  {
+    n: '2',
+    titre: 'La biorégion, c\'est quoi ?',
+    sous: 'Module 2',
+    desc: "On pose les fondations. D'où vient l'idée, que désigne-t-elle précisément, en quoi se distingue-t-elle des autres projets écologiques. On démêle le mot, le concept et la pratique. Avec un Dico biorégional pour garder les définitions sous la main.",
+    tags: ['Concept', 'Étymologie', 'Dico biorégional'],
+  },
+  {
+    n: '3',
+    titre: 'Pourquoi ? Respecter le vivant et les limites planétaires',
+    sous: 'Module 3',
+    desc: "La biorégion comme réponse systémique à l'effondrement en cours. On descend dans la dureté des enjeux — anéantissement du vivant, civilisation thermo-industrielle, urbanisation de la Terre — et on montre pourquoi l'échelle territoriale est la bonne échelle pour y répondre.",
+    tags: ['Limites planétaires', 'Systémique', 'Échelle territoriale'],
+  },
+  {
+    n: '4',
+    titre: 'Pourquoi ? Habiter et faire société autrement',
+    sous: 'Module 4',
+    desc: "La biorégion comme opportunité politique. Sortir des rapports de domination, refonder le démocratique, réinventer l'habiter, le lien, l'autonomie. La biorégion n'est pas qu'écologique : c'est une proposition politique radicale, post-urbaine, libérée des oppressions systémiques.",
+    tags: ['Politique', 'Démocratie', 'Oppressions systémiques'],
+  },
+  {
+    n: '5',
+    titre: 'Comment la mettre en place ?',
+    sous: 'Module 5',
+    desc: "On passe à l'action. Concrètement, comment on lance une dynamique biorégionale sur un territoire : avec qui, par où, sur quels leviers. Chaque sous-module se termine par des défis à relever pour poser, chez vous, les premières pierres de l'aventure biorégionale.",
+    tags: ['Pratique', 'Défis terrain', 'Mise en œuvre'],
+  },
+];
+
+const extras = [
+  { icon: 'library-big', titre: 'Médiathèque du MOOC', desc: 'Une sélection transversale et riche : livres, podcasts, vidéos, documentaires. Pour creuser chaque filon du biorégionalisme.' },
+  { icon: 'video', titre: 'Visios spéciales', desc: 'Écriture d\'un récit utopique avec Futurs Proches, les 4R par Adaptation Radicale, retours d\'expérience d\'ancien·ne·s, écriture d\'un récit biorégional d\'anticipation.' },
+  { icon: 'map', titre: 'Carte des Réhabitant·e·s', desc: 'Pour identifier les personnes qui habitent peut-être le même territoire que vous. Le MOOC n\'est pas une formation, c\'est une rencontre.' },
+  { icon: 'book-open', titre: 'Dico biorégional', desc: 'Tous les concepts présentés dans le MOOC et leurs définitions, pour ne rien perdre et transmettre à votre tour.' },
+  { icon: 'users', titre: 'Visio hebdomadaire', desc: 'Une visio par semaine avec l\'équipe et les participant·e·s. Temps fort d\'échange, de questions, de lien humain réel.' },
+  { icon: 'calendar-heart', titre: 'Conclusion & célébration', desc: 'Le MOOC ne se termine pas : il s\'ouvre. On célèbre le chemin parcouru et on bascule vers la Communauté biorégionale.' },
+];
+
+const profils = [
+  {
+    icon: 'trees',
+    titre: 'Vous êtes déjà en train de lancer une dynamique biorégionale',
+    desc: 'Vous animer une dynamique sur un territoire rural : écolieu, écovillage, coopérative, ferme bio, recyclerie, tiers-lieu, monnaie locale, ZAD... Vous voulez lui donner une dimension plus politique et systémique.',
+  },
+  {
+    icon: 'sparkles',
+    titre: 'Vous voulez en impulser une',
+    desc: 'Vous sentez l\'appel du territoire. Vous ne savez pas encore par où commencer, ni avec qui. Le MOOC vous donne un cadre, une vision et des premières pierres à poser.',
+  },
+  {
+    icon: 'users-round',
+    titre: 'Vous participez à des initiatives alternatives',
+    desc: 'Vous êtes engagé·e dans une initiative locale (café associatif, repair café, accorderie, école alternative, MDP, MER...) et vous voulez relier votre engagement à une vision plus large.',
+  },
+  {
+    icon: 'leaf',
+    titre: 'Vous êtes en ville, et ça ne vous convient plus',
+    desc: 'Vous êtes éveillé·e sur le plan écologique, en milieu urbain. Une envie profonde de changer de vie, de vous reconnecter au vivant, à la Terre, à un territoire. Le MOOC est une porte.',
+  },
+];
+
+const temoignages = [
+  { prenom: 'Maïté', session: 'Session 5', texte: "Tout est top. Les visios permettent de se connecter à d\'autres humains, qui nous sont inconnus mais avec qui on partage déjà des valeurs communes ; de comprendre et constater que nous sommes nombreux à vouloir autre chose ; de construire sa propre réflexion en se nourrissant d\'une part, et en (s\')écoutant d\'autre part. Le simple fait que cela fonctionne de manière presque organique me rassure sur une possibilité de réveil collectif. On a envie d\'y croire !" },
+  { prenom: 'Harmonie', session: 'Session 3', texte: "MERCI d\'être là ! J\'ai vraiment vécu ce MOOC comme une transformation. J\'ai plus confiance en moi, j\'assume mieux ma philosophie, mes envies, mes actions. J\'ai rechargé mon espérance aussi ! Avec vous ! Je suis là ! N\'hésitez pas si besoin !" },
+  { prenom: 'Sylvaine', session: 'Session 2', texte: "Suivre le MOOC Bioregion a été un moment intense de (re)prise de conscience et une façon actualisée de renouer avec des thématiques qui me sont chères. Malgré la distance numérique et durant les 9 semaines, ce Mooc est très immersif et intense. Les questionnements foisonnent, soutenus par une communauté prête à les accueillir. Le processus est évolutif : il y a un avant et un après. Préparez-vous à un debunkage sans langue de bois, enthousiaste et dans l\'intention de respecter les rythmes du Vivant en nous et autour de nous." },
+  { prenom: 'Sidney', session: 'Session 1', texte: "Un grand bravo et une grande reconnaissance à toute l\'équipe pour la gestion en temps réel de ce Mooc. Je vous vois tellement disponibles et réactifs pour répondre de manière attentive et attentionnée à chaque demande, chaque interrogation. Votre posture force le respect. Partant de 0 sur le sujet du biorégionalisme, j\'ai découvert une nouvelle philosophie, un nouveau réseau et me nourris de la multitude de ressources partagées." },
+  { prenom: 'Baptiste', session: 'Session 5', texte: "Les contenus sont très riches, vous êtes tous·tes présent·es pour que les participant·es soient relié·es les un·e·s aux autres, c\'est un gros défi. Bravo et merci pour ce voyage dans l\'univers biorégional, ça donne envie de continuer à résister et à construire un autre monde !" },
+  { prenom: 'Isabelle', session: 'Session 1', texte: "Bravo, bravo, bravo ! Pour cette bulle d\'oxygène qu\'a été ce Mooc. Et cet espoir d\'un monde plus respectueux du vivant qui s\'ouvre à nous par la possibilité de mise en application concrète qui s\'en dessine. Je me suis sentie longtemps comme une petite île, plus reliée au vivant qu\'aux humains de ce monde capitaliste, et avec ce Mooc j\'ai découvert tout un archipel de personnes qui ont le désir d\'oeuvrer dans le même sens, ensemble." },
+  { prenom: 'Laurence', session: 'Session 2', texte: "Ce MOOC est un OVNI. On est embarqué dans une aventure humaine, bouleversante dans tous les sens du terme. Il a bouleversé mes préjugés sur la « formation » qui n\'est pas forcément que passive, mes connaissances sur les modes possibles d\'habiter le vivant, mes projections du futur en me proposant d\'être enfin actrice, ma relation à l\'autre. Enfin, il m\'a aidé à fixer mes priorités qui étaient, au démarrage, trop nombreuses et emmêlées et qui sont désormais plus claires et hiérarchisées. MERCI pour tout !" },
+  { prenom: 'Martine', session: 'Session 5', texte: "Je suis extrêmement impressionnée par l\'abondance, la structuration et l\'intelligence de tout ce que vous proposez. Je tiens à vous remercier pour votre précieuse, voire inestimable, contribution à la possibilité de changement de ce monde. Gratitude." },
+];
+
+const faqs = [
+  { q: 'À qui s\'adresse exactement ce MOOC ?', r: "À quatre profils complémentaires : les personnes qui animent déjà une dynamique biorégionale sur un territoire rural, celles qui veulent en impulser une, les personnes engagées dans des initiatives alternatives locales (écolieux, coopératives, ZAD, monnaies locales, repair cafés...), et les urbain·es éveillé·es qui ressentent l\'appel du territoire et veulent changer de vie." },
+  { q: 'Combien de temps ça prend ?', r: "9 semaines, du 26 octobre au 13 décembre 2026. La formule basique représente environ 20 heures au total (contenu des modules + visio hebdomadaire), soit ~2h15/semaine. La formule enrichie (ressources « Pour aller plus loin » + visios spéciales) monte à ~40 heures, soit ~4h30/semaine. Vous choisissez votre rythme." },
+  { q: 'C\'est quoi la participation libre et consciente ?', r: "Pas de prix affiché, pas de barrière financière. Vous déterminez vous-même la valeur de votre contribution, en conscience : ce que la formation vaut à vos yeux et ce que vous pouvez donner. C\'est une philosophie radicalement alternative, qui ouvre la formation à toutes et tous et travaille notre rapport collectif à l\'argent." },
+  { q: 'Et si je ne peux pas suivre toutes les visios en direct ?', r: "Les visios sont enregistrées et disponibles en replay. La communauté du MOOC reste accessible après la session. L\'important est votre disponibilité globale pendant les 9 semaines pour profiter de l\'expérience collaborative." },
+  { q: 'Le MOOC est-il uniquement théorique ?', r: "Non. Chaque module se termine par des défis concrets à relever sur votre territoire pour poser les premières pierres de l\'aventure biorégionale. La radicalité du positionnement est assumée : autonomie, auto-suffisance, autogestion. L\'objectif est d\'impulser une dynamique territoriale réelle, pas seulement de transmettre un concept." },
+  { q: 'Et après le MOOC ?', r: "Vous intégrez la Communauté biorégionale, qui réunit les participant·e·s des sessions précédentes et des aventures Biotopie. Pour aller plus loin en immersion opérationnelle, vous pouvez poursuivre avec l\'Aventure Biotopie (stage en présentiel en Centre-Bretagne)." },
+];
+---
+
+<BioregionLayout
+  title="MOOC Biorégion — Comment habiter autrement la Terre — Mathieu Kuntz"
+  description="Formation en ligne sur le biorégionalisme, créée par L'Archipel du Vivant. 6e session : automne 2026. Participation libre et consciente. Par Mathieu Kuntz, co-fondateur de l'ONG."
+>
+  <!-- NAVBAR -->
+  <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-[#f7f6f1]/85 backdrop-blur-md border-b border-transparent" id="bio-navbar">
+    <div class="max-w-screen-2xl mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3 z-50">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" class="w-7 h-7 text-[#2d4a2b]">
+          <path d="M12 22c-4 0-7-2.5-7-7 0-3.5 2-5 4-7 1.2-1.2 2-3 3-5 1 2 1.8 3.8 3 5 2 2 4 3.5 4 7 0 4.5-3 7-7 7z"/>
+          <path d="M12 22V10"/>
+          <path d="M12 16c-2 0-3-1-3-3"/>
+        </svg>
+        <div class="flex flex-col leading-none">
+          <span class="text-[10px] tracking-[0.25em] text-[#5c5c5a] uppercase">MOOC</span>
+          <span class="text-sm font-display font-medium tracking-wide text-[#1a1f17]">Biorégion</span>
+        </div>
+      </a>
+
+      <div class="hidden lg:flex items-center gap-8">
+        <a href="#concept" class="text-[15px] text-[#1a1f17] hover:text-[#2d4a2b] transition-colors">Le concept</a>
+        <a href="#programme" class="text-[15px] text-[#1a1f17] hover:text-[#2d4a2b] transition-colors">Programme</a>
+        <a href="#profils" class="text-[15px] text-[#1a1f17] hover:text-[#2d4a2b] transition-colors">Pour qui</a>
+        <a href="#temoignages" class="text-[15px] text-[#1a1f17] hover:text-[#2d4a2b] transition-colors">Témoignages</a>
+        <a href="#auteur" class="text-[15px] text-[#1a1f17] hover:text-[#2d4a2b] transition-colors">Qui suis-je</a>
+        <a href={inscriptionUrl} target="_blank" rel="noopener" class="bg-[#2d4a2b] text-white px-6 py-3 rounded-full text-[15px] font-medium hover:bg-[#3d5a3b] transition-colors flex items-center gap-2">
+          Pré-inscription
+          <i data-lucide="arrow-up-right" class="w-4 h-4 stroke-[1.8]"></i>
+        </a>
+      </div>
+
+      <button class="lg:hidden z-50 p-2" id="bio-mobile-menu-btn" aria-label="Menu">
+        <i data-lucide="menu" class="w-6 h-6 stroke-[1.5]"></i>
+      </button>
+    </div>
+
+    <div id="bio-mobile-menu" class="hidden lg:hidden absolute top-full left-0 right-0 bg-[#f7f6f1] border-b border-[#dcdacd] shadow-lg z-40">
+      <div class="px-6 py-6 flex flex-col gap-1">
+        <a href="#concept" class="py-3.5 px-4 rounded-xl text-base text-[#1a1f17] hover:bg-[#e8e4d9] transition-colors">Le concept</a>
+        <a href="#programme" class="py-3.5 px-4 rounded-xl text-base text-[#1a1f17] hover:bg-[#e8e4d9] transition-colors">Programme</a>
+        <a href="#profils" class="py-3.5 px-4 rounded-xl text-base text-[#1a1f17] hover:bg-[#e8e4d9] transition-colors">Pour qui</a>
+        <a href="#temoignages" class="py-3.5 px-4 rounded-xl text-base text-[#1a1f17] hover:bg-[#e8e4d9] transition-colors">Témoignages</a>
+        <a href="#auteur" class="py-3.5 px-4 rounded-xl text-base text-[#1a1f17] hover:bg-[#e8e4d9] transition-colors">Qui suis-je</a>
+        <a href={inscriptionUrl} target="_blank" rel="noopener" class="mt-2 py-3.5 px-4 rounded-full bg-[#2d4a2b] text-white text-center font-medium hover:bg-[#3d5a3b] transition-colors">Pré-inscription</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="relative pt-32 lg:pt-40 pb-24 overflow-hidden">
+    <!-- Background decor -->
+    <div class="absolute inset-0 -z-10 overflow-hidden">
+      <div class="absolute top-[-10%] right-[-15%] w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] rounded-full bg-[#a8b89c]/20 blur-3xl animate-bio-drift"></div>
+      <div class="absolute bottom-[-20%] left-[-15%] w-[50vw] h-[50vw] max-w-[700px] max-h-[700px] rounded-full bg-[#c9a96e]/15 blur-3xl animate-bio-float"></div>
+    </div>
+
+    <div class="max-w-screen-xl mx-auto px-6 md:px-12">
+      <div class="max-w-4xl">
+        <div class="flex flex-wrap items-center gap-3 mb-8">
+          <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#2d4a2b]/10 text-[#2d4a2b] text-sm font-medium">
+            <span class="w-2 h-2 rounded-full bg-[#2d4a2b] animate-pulse"></span>
+            Session 6 — Automne 2026
+          </span>
+          <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#c9a96e]/15 text-[#8b6f47] text-sm font-medium">
+            Participation libre et consciente
+          </span>
+          <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#a8b89c]/20 text-[#2d4a2b] text-sm font-medium">
+            9 semaines · 20h à 40h
+          </span>
+        </div>
+
+        <h1 class="font-display text-5xl md:text-7xl lg:text-[5.5rem] leading-[1.02] tracking-tight text-[#1a1f17] mb-8">
+          Biorégion.<br>
+          <span class="italic text-[#2d4a2b]">Comment habiter</span><br>
+          autrement la Terre.
+        </h1>
+
+        <p class="text-lg md:text-xl text-[#3c4239] leading-relaxed max-w-2xl mb-10">
+          Une formation en ligne pour explorer l'utopie biorégionale et la rendre concrète. Plonger dans les enjeux de notre époque, comprendre pourquoi la biorégion est une réponse profondément pertinente, et apprendre à la mettre en place, sur votre territoire.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 mb-12">
+          <a href={inscriptionUrl} target="_blank" rel="noopener" class="inline-flex bg-[#2d4a2b] text-white px-8 py-5 rounded-full items-center justify-center gap-3 hover:bg-[#3d5a3b] transition-all group shadow-lg shadow-[#2d4a2b]/15">
+            <span class="text-base font-medium tracking-wide">Je me pré-inscris à la session 6</span>
+            <i data-lucide="arrow-right" class="w-5 h-5 stroke-[1.6] group-hover:translate-x-1 transition-transform"></i>
+          </a>
+          <a href={siteAdvUrl} target="_blank" rel="noopener" class="inline-flex bg-transparent text-[#1a1f17] px-8 py-5 rounded-full items-center justify-center gap-3 hover:bg-[#1a1f17] hover:text-white border border-[#1a1f17]/30 transition-all">
+            <span class="text-base font-medium tracking-wide">Voir la page officielle</span>
+            <i data-lucide="external-link" class="w-5 h-5 stroke-[1.6]"></i>
+          </a>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-x-8 gap-y-4 text-sm text-[#5c5c5a]">
+          <div class="flex items-center gap-2">
+            <i data-lucide="calendar-days" class="w-4 h-4 stroke-[1.6] text-[#2d4a2b]"></i>
+            <span>26 octobre — 13 décembre 2026</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <i data-lucide="video" class="w-4 h-4 stroke-[1.6] text-[#2d4a2b]"></i>
+            <span>Visio de présentation : mardi 20 octobre, 12h30 — 14h</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <i data-lucide="users" class="w-4 h-4 stroke-[1.6] text-[#2d4a2b]"></i>
+            <span>5 sessions déjà vécues · ~20 anciens dans l'équipe</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 text-[#5c5c5a]">
+      <span class="text-[10px] tracking-[0.3em] uppercase">Descendre</span>
+      <i data-lucide="chevron-down" class="w-5 h-5 stroke-[1.5] animate-bounce"></i>
+    </div>
+  </section>
+
+  <!-- RASSURANCE / RACCROCHE ARCHIPEL DU VIVANT -->
+  <section class="py-12 bg-[#1a1f17] text-[#f7f6f1]">
+    <div class="max-w-screen-xl mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-center gap-6 text-center md:text-left">
+      <div class="flex items-center gap-3">
+        <i data-lucide="leaf" class="w-6 h-6 stroke-[1.4] text-[#a8b89c]"></i>
+        <span class="font-display text-2xl tracking-wide">Une formation par L'Archipel du Vivant</span>
+      </div>
+      <span class="hidden md:block text-[#a8b89c]/40">·</span>
+      <p class="text-sm md:text-base text-[#dcd9d2] max-w-2xl">
+        ONG française de biorégionalisme, fondée en 2019. Basée à l'écovillage Ty Balum, en Centre-Bretagne. Site officiel : <a href="https://archipelduvivant.org" target="_blank" rel="noopener" class="underline underline-offset-4 text-[#a8b89c] hover:text-white transition-colors">archipelduvivant.org</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONCEPT -->
+  <section id="concept" class="py-24 lg:py-32">
+    <div class="max-w-screen-xl mx-auto px-6 md:px-12">
+      <div class="max-w-3xl mb-16">
+        <span class="inline-block text-xs tracking-[0.3em] uppercase text-[#2d4a2b] mb-4">Le concept</span>
+        <h2 class="font-display text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-[#1a1f17] mb-8">
+          Et s'il fallait <span class="italic text-[#2d4a2b]">penser radicalement</span> différemment ?
+        </h2>
+        <p class="text-lg md:text-xl text-[#3c4239] leading-relaxed">
+          L'époque que nous vivons est singulière à plus d'un titre. Anéantissement du vivant, effondrement de notre civilisation thermo-industrielle, impact délétère des rapports de domination, urbanisation de la Terre, confiscation du pouvoir par une élite. Les défis sont immenses.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 lg:gap-10">
+        <div class="bg-[#fdfcf9] rounded-3xl p-8 border border-[#e8e4d9]">
+          <div class="w-12 h-12 rounded-2xl bg-[#2d4a2b]/10 flex items-center justify-center mb-6">
+            <i data-lucide="circle-help" class="w-6 h-6 stroke-[1.5] text-[#2d4a2b]"></i>
+          </div>
+          <h3 class="font-display text-2xl text-[#1a1f17] mb-3">Et si changer le système n'était pas possible ?</h3>
+          <p class="text-[#3c4239] leading-relaxed">Le système dominant se nourrit de l'extermination du vivant, de l'exploitation des ressources et de l'aliénation des humains. Et s'il fallait cesser de le réformer pour en construire un autre, à une autre échelle ?</p>
+        </div>
+        <div class="bg-[#fdfcf9] rounded-3xl p-8 border border-[#e8e4d9] md:translate-y-8">
+          <div class="w-12 h-12 rounded-2xl bg-[#c9a96e]/15 flex items-center justify-center mb-6">
+            <i data-lucide="sparkles" class="w-6 h-6 stroke-[1.5] text-[#8b6f47]"></i>
+          </div>
+          <h3 class="font-display text-2xl text-[#1a1f17] mb-3">Et si l'utopie était un devoir ?</h3>
+          <p class="text-[#3c4239] leading-relaxed">Une société au service du vivant, suffisamment résiliente pour amortir les chocs, libérée des rapports de domination, connectée à la Terre et réellement démocratique. La biorégion est une formidable utopie qui pourrait tout changer.</p>
+        </div>
+        <div class="bg-[#fdfcf9] rounded-3xl p-8 border border-[#e8e4d9]">
+          <div class="w-12 h-12 rounded-2xl bg-[#a8b89c]/25 flex items-center justify-center mb-6">
+            <i data-lucide="map-pinned" class="w-6 h-6 stroke-[1.5] text-[#2d4a2b]"></i>
+          </div>
+          <h3 class="font-display text-2xl text-[#1a1f17] mb-3">Et si la bonne échelle était le territoire ?</h3>
+          <p class="text-[#3c4239] leading-relaxed">Une telle société ne peut exister qu'à l'échelle territoriale. La biorégion n'est pas une métaphore : c'est une proposition concrète d'organisation — auto-détermination, auto-suffisance, autogestion. Autonomie.</p>
+        </div>
+      </div>
+
+      <div class="mt-20 bg-gradient-to-br from-[#2d4a2b] to-[#3d5a3b] rounded-3xl p-10 md:p-16 text-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-72 h-72 rounded-full bg-[#a8b89c]/15 blur-3xl"></div>
+        <div class="relative grid md:grid-cols-3 gap-8 md:gap-12">
+          <div>
+            <i data-lucide="compass" class="w-8 h-8 stroke-[1.3] mb-4"></i>
+            <h4 class="font-display text-xl mb-2">Exploratoire</h4>
+            <p class="text-[#dcd9d2] leading-relaxed text-sm">Appréhender la singularité du biorégionalisme comme réponse pertinente aux enjeux cruciaux de notre époque.</p>
+          </div>
+          <div>
+            <i data-lucide="hand-heart" class="w-8 h-8 stroke-[1.3] mb-4"></i>
+            <h4 class="font-display text-xl mb-2">Collaborative</h4>
+            <p class="text-[#dcd9d2] leading-relaxed text-sm">Pas une formation figée, mais un contenu évolutif sur lequel vous pouvez directement influer. Vos retours transforment le MOOC en temps réel.</p>
+          </div>
+          <div>
+            <i data-lucide="messages-square" class="w-8 h-8 stroke-[1.3] mb-4"></i>
+            <h4 class="font-display text-xl mb-2">Interactive</h4>
+            <p class="text-[#dcd9d2] leading-relaxed text-sm">Un maximum d'échanges, entre vous et entre vous et nous. La Communauté du MOOC et les visios hebdomadaires font vivre l'aventure.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMME -->
+  <section id="programme" class="py-24 lg:py-32 bg-[#fdfcf9]">
+    <div class="max-w-screen-xl mx-auto px-6 md:px-12">
+      <div class="max-w-3xl mb-16">
+        <span class="inline-block text-xs tracking-[0.3em] uppercase text-[#2d4a2b] mb-4">Programme</span>
+        <h2 class="font-display text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-[#1a1f17] mb-6">
+          5 modules, des défis concrets, et un avant / un après.
+        </h2>
+        <p class="text-lg text-[#3c4239] leading-relaxed">
+          Le MOOC part de vous, vous emmène dans l'utopie, pose les fondations du concept, démontre pourquoi il répond aux enjeux de l'époque, et finit par la mise en pratique. Chaque module se termine par des défis à relever sur votre territoire.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        {modules.map((m) => (
+          <div class="group bg-white rounded-3xl border border-[#e8e4d9] hover:border-[#2d4a2b]/30 hover:shadow-lg hover:shadow-[#2d4a2b]/5 transition-all duration-300 overflow-hidden">
+            <div class="grid md:grid-cols-12 gap-4 p-6 md:p-8">
+              <div class="md:col-span-2 flex md:flex-col items-start gap-3">
+                <div class="font-display text-6xl md:text-7xl text-[#a8b89c] leading-none group-hover:text-[#2d4a2b] transition-colors">{m.n}</div>
+                <span class="text-[10px] tracking-[0.25em] uppercase text-[#5c5c5a]">{m.sous}</span>
+              </div>
+              <div class="md:col-span-7">
+                <h3 class="font-display text-2xl md:text-3xl text-[#1a1f17] mb-3 leading-tight">{m.titre}</h3>
+                <p class="text-[#3c4239] leading-relaxed">{m.desc}</p>
+              </div>
+              <div class="md:col-span-3 flex flex-wrap md:flex-col gap-2 md:items-end">
+                {m.tags.map((t) => (
+                  <span class="inline-block px-3 py-1.5 rounded-full bg-[#a8b89c]/15 text-[#2d4a2b] text-xs font-medium whitespace-nowrap">{t}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- EXTRA : ce que contient le MOOC -->
+      <div class="mt-20">
+        <h3 class="font-display text-3xl md:text-4xl text-[#1a1f17] mb-10 text-center">Et tout autour, ce qui rend l'expérience si riche</h3>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {extras.map((e) => (
+            <div class="bg-white rounded-2xl p-6 border border-[#e8e4d9] hover:border-[#2d4a2b]/20 transition-colors">
+              <div class="w-10 h-10 rounded-xl bg-[#2d4a2b]/10 flex items-center justify-center mb-4">
+                <i data-lucide={e.icon} class="w-5 h-5 stroke-[1.5] text-[#2d4a2b]"></i>
+              </div>
+              <h4 class="font-display text-xl text-[#1a1f17] mb-2">{e.titre}</h4>
+              <p class="text-sm text-[#3c4239] leading-relaxed">{e.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROFILS -->
+  <section id="profils" class="py-24 lg:py-32">
+    <div class="max-w-screen-xl mx-auto px-6 md:px-12">
+      <div class="max-w-3xl mb-16">
+        <span class="inline-block text-xs tracking-[0.3em] uppercase text-[#2d4a2b] mb-4">Pour qui</span>
+        <h2 class="font-display text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-[#1a1f17] mb-6">
+          Ce MOOC a été pensé pour <span class="italic text-[#2d4a2b]">vous</span>.
+        </h2>
+        <p class="text-lg text-[#3c4239] leading-relaxed">
+          Quatre profils complémentaires se retrouvent dans chaque session. La force du MOOC est dans leur croisement : des urbains qui rêvent d'ancrage, des ruraux déjà en action, des engagés qui veulent relier, des explorateurs qui veulent lancer.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        {profils.map((p, i) => (
+          <div class={`group bg-[#fdfcf9] rounded-3xl p-8 border border-[#e8e4d9] hover:border-[#2d4a2b]/30 hover:shadow-md transition-all duration-300 ${i % 2 === 1 ? 'md:translate-y-8' : ''}`}>
+            <div class="flex items-start gap-5">
+              <div class="shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-[#2d4a2b] to-[#3d5a3b] text-white flex items-center justify-center">
+                <i data-lucide={p.icon} class="w-7 h-7 stroke-[1.4]"></i>
+              </div>
+              <div>
+                <h3 class="font-display text-xl md:text-2xl text-[#1a1f17] mb-2 leading-tight">{p.titre}</h3>
+                <p class="text-[#3c4239] leading-relaxed">{p.desc}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMAT & RYTHME -->
+  <section class="py-24 lg:py-32 bg-[#1a1f17] text-[#f7f6f1] relative overflow-hidden">
+    <div class="absolute top-[-20%] right-[-10%] w-[500px] h-[500px] rounded-full bg-[#2d4a2b]/30 blur-3xl"></div>
+    <div class="absolute bottom-[-20%] left-[-10%] w-[400px] h-[400px] rounded-full bg-[#c9a96e]/10 blur-3xl"></div>
+
+    <div class="max-w-screen-xl mx-auto px-6 md:px-12 relative">
+      <div class="max-w-3xl mb-16">
+        <span class="inline-block text-xs tracking-[0.3em] uppercase text-[#a8b89c] mb-4">Format & rythme</span>
+        <h2 class="font-display text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight mb-6">
+          9 semaines, deux formules, votre rythme.
+        </h2>
+        <p class="text-lg text-[#dcd9d2] leading-relaxed">
+          Le MOOC dure 9 semaines. Vous choisissez entre la formule basique (contenu des modules + visio hebdo) et la formule enrichie (ressources « Pour aller plus loin » + visios spéciales avec nos partenaires). Le tout reste compatible avec une vie active.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
+        <div class="bg-white/5 backdrop-blur rounded-3xl p-8 border border-white/10">
+          <div class="flex items-baseline justify-between mb-6">
+            <h3 class="font-display text-2xl">Formule basique</h3>
+            <span class="font-display text-3xl text-[#a8b89c]">~20 h</span>
+          </div>
+          <p class="text-[#dcd9d2] mb-6 leading-relaxed">Contenu directement accessible dans chaque sous-module + visio hebdomadaire.</p>
+          <div class="space-y-3 text-sm">
+            <div class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 stroke-[2] text-[#a8b89c]"></i>5 modules + introduction + préambule</div>
+            <div class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 stroke-[2] text-[#a8b89c]"></i>Visio hebdomadaire avec l'équipe</div>
+            <div class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 stroke-[2] text-[#a8b89c]"></i>Accès à la Communauté du MOOC</div>
+            <div class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 stroke-[2] text-[#a8b89c]"></i>Carte des Réhabitant·e·s</div>
+            <div class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 stroke-[2] text-[#a8b89c]"></i>Dico biorégional</div>
+          </div>
+          <div class="mt-6 pt-6 border-t border-white/10 text-sm text-[#a8b89c]">Soit environ <strong class="text-white">2h15 par semaine</strong> sur 9 semaines.</div>
+        </div>
+
+        <div class="bg-gradient-to-br from-[#2d4a2b] to-[#3d5a3b] rounded-3xl p-8 border border-[#a8b89c]/30 shadow-2xl shadow-[#2d4a2b]/30">
+          <div class="flex items-baseline justify-between mb-6">
+            <h3 class="font-display text-2xl">Formule enrichie</h3>
+            <span class="font-display text-3xl text-[#c9a96e]">~40 h</span>
+          </div>
+          <p class="text-[#dcd9d2] mb-6 leading-relaxed">Tout ce qui est dans la formule basique + les ressources « Pour aller plus loin » + 6 visios spéciales animées par nos partenaires.</p>
+          <div class="space-y-3 text-sm">
+            <div class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 stroke-[2] text-[#c9a96e]"></i>Tout le contenu de la formule basique</div>
+            <div class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 stroke-[2] text-[#c9a96e]"></i>Ressources « Pour aller plus loin »</div>
+            <div class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 stroke-[2] text-[#c9a96e]"></i>6 visios spéciales (Futurs Proches, Adaptation Radicale...)</div>
+            <div class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 stroke-[2] text-[#c9a96e]"></i>Accès complet à la Médiathèque du MOOC</div>
+            <div class="flex items-center gap-3"><i data-lucide="check" class="w-4 h-4 stroke-[2] text-[#c9a96e]"></i>Témoignages des ancien·ne·s</div>
+          </div>
+          <div class="mt-6 pt-6 border-t border-white/10 text-sm text-[#c9a96e]">Soit environ <strong class="text-white">4h30 par semaine</strong> sur 9 semaines.</div>
+        </div>
+      </div>
+
+      <p class="mt-10 text-center text-sm text-[#a8b89c]/80 max-w-2xl mx-auto">
+        Vérifiez votre disponibilité physique et mentale avant de vous inscrire, pour profiter pleinement de l'expérience informative, collaborative et pratique.
+      </p>
+    </div>
+  </section>
+
+  <!-- PARTICIPATION LIBRE ET CONSCIENTE -->
+  <section class="py-24 lg:py-32">
+    <div class="max-w-screen-xl mx-auto px-6 md:px-12">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div>
+          <span class="inline-block text-xs tracking-[0.3em] uppercase text-[#2d4a2b] mb-4">Le prix</span>
+          <h2 class="font-display text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-[#1a1f17] mb-6">
+            Participation <span class="italic text-[#2d4a2b]">libre</span> et consciente.
+          </h2>
+          <p class="text-lg text-[#3c4239] leading-relaxed mb-6">
+            Pas de prix affiché. Pas de barrière financière. Ouvert à toutes et tous.
+          </p>
+          <p class="text-[#3c4239] leading-relaxed mb-6">
+            Plutôt que d'afficher un tarif qui ne rendrait la formation accessible qu'aux personnes qui ont les moyens de se la payer, l'Archipel du Vivant a choisi une tout autre philosophie, radicalement alternative : c'est vous, en conscience, qui déterminez la valeur de votre contribution.
+          </p>
+          <p class="text-[#3c4239] leading-relaxed">
+            En conscience de ce que la formation vaut à vos yeux. En conscience de vos moyens financiers personnels. C'est aussi l'opportunité de travailler, individuellement et collectivement, notre rapport à l'argent — en faire une source de coopération plutôt que de compétition.
+          </p>
+        </div>
+
+        <div class="bg-gradient-to-br from-[#fdfcf9] to-[#f7f6f1] rounded-3xl p-10 border border-[#e8e4d9] relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-64 h-64 rounded-full bg-[#c9a96e]/15 blur-3xl"></div>
+          <div class="relative">
+            <div class="flex items-center gap-3 mb-6">
+              <i data-lucide="hand-heart" class="w-8 h-8 stroke-[1.3] text-[#2d4a2b]"></i>
+              <span class="text-sm tracking-widest uppercase text-[#5c5c5a]">Comment ça marche</span>
+            </div>
+            <ol class="space-y-6">
+              <li class="flex gap-4">
+                <span class="shrink-0 w-8 h-8 rounded-full bg-[#2d4a2b] text-white flex items-center justify-center font-display text-sm">1</span>
+                <p class="text-[#1a1f17] leading-relaxed pt-1">Vous suivez le MOOC, pleinement, sans penser à l'argent.</p>
+              </li>
+              <li class="flex gap-4">
+                <span class="shrink-0 w-8 h-8 rounded-full bg-[#2d4a2b] text-white flex items-center justify-center font-display text-sm">2</span>
+                <p class="text-[#1a1f17] leading-relaxed pt-1">À votre rythme, vous mesurez ce que la formation vous a apporté.</p>
+              </li>
+              <li class="flex gap-4">
+                <span class="shrink-0 w-8 h-8 rounded-full bg-[#2d4a2b] text-white flex items-center justify-center font-display text-sm">3</span>
+                <p class="text-[#1a1f17] leading-relaxed pt-1">Vous contribuez selon vos moyens — y compris zéro, sans culpabilité.</p>
+              </li>
+              <li class="flex gap-4">
+                <span class="shrink-0 w-8 h-8 rounded-full bg-[#2d4a2b] text-white flex items-center justify-center font-display text-sm">4</span>
+                <p class="text-[#1a1f17] leading-relaxed pt-1">Ce que vous donnez finance les prochaines sessions et l'ONG.</p>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TÉMOIGNAGES -->
+  <section id="temoignages" class="py-24 lg:py-32 bg-[#fdfcf9]">
+    <div class="max-w-screen-xl mx-auto px-6 md:px-12">
+      <div class="max-w-3xl mb-16">
+        <span class="inline-block text-xs tracking-[0.3em] uppercase text-[#2d4a2b] mb-4">Témoignages</span>
+        <h2 class="font-display text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-[#1a1f17] mb-6">
+          Un avant, et un après.
+        </h2>
+        <p class="text-lg text-[#3c4239] leading-relaxed">
+          Cinq sessions déjà vécues. Des centaines de Réhabitant·e·s. Une vingtaine d'ancien·ne·s a rejoint l'équipe pour faire vivre les sessions suivantes. Voici ce qu'iels en disent.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {temoignages.map((t) => (
+          <figure class="bg-white rounded-3xl p-7 border border-[#e8e4d9] flex flex-col">
+            <div class="flex items-center gap-1 mb-4 text-[#c9a96e]">
+              {[1,2,3,4,5].map(() => <i data-lucide="star" class="w-4 h-4 fill-[#c9a96e] text-[#c9a96e]"></i>)}
+            </div>
+            <blockquote class="text-[#1a1f17] leading-relaxed text-[15px] flex-grow italic">« {t.texte} »</blockquote>
+            <figcaption class="mt-5 pt-5 border-t border-[#e8e4d9]">
+              <div class="font-display text-lg text-[#1a1f17]">{t.prenom}</div>
+              <div class="text-xs tracking-widest uppercase text-[#5c5c5a]">{t.session}</div>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+
+      <p class="mt-12 text-center text-sm text-[#5c5c5a]">
+        Tous les témoignages proviennent des sessions 1 à 5, publiés sur <a href={siteAdvUrl} target="_blank" rel="noopener" class="underline underline-offset-4 text-[#2d4a2b] hover:text-[#1a1f17] transition-colors">la page officielle du MOOC</a> par L'Archipel du Vivant.
+      </p>
+    </div>
+  </section>
+
+  <!-- AUTEUR — MATHIEU KUNTZ -->
+  <section id="auteur" class="py-24 lg:py-32">
+    <div class="max-w-screen-xl mx-auto px-6 md:px-12">
+      <div class="grid lg:grid-cols-12 gap-12 items-start">
+        <div class="lg:col-span-5 lg:sticky lg:top-28">
+          <span class="inline-block text-xs tracking-[0.3em] uppercase text-[#2d4a2b] mb-4">Qui suis-je</span>
+          <h2 class="font-display text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-[#1a1f17] mb-8">
+            Mathieu Kuntz,<br><span class="italic text-[#2d4a2b]">co-fondateur</span> de l'Archipel du Vivant.
+          </h2>
+
+          <div class="relative aspect-[4/5] rounded-3xl overflow-hidden bg-[#e8e4d9] mb-6 max-w-md">
+            <img src="/hero-portrait.jpg" alt="Mathieu Kuntz" class="w-full h-full object-cover object-[60%_30%]">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#1a1f17]/40 via-transparent to-transparent"></div>
+          </div>
+
+          <div class="flex flex-wrap gap-2 text-xs">
+            <span class="px-3 py-1.5 rounded-full bg-[#2d4a2b]/10 text-[#2d4a2b]">Co-fondateur AdV (2019)</span>
+            <span class="px-3 py-1.5 rounded-full bg-[#c9a96e]/15 text-[#8b6f47]">Youth for Climate</span>
+            <span class="px-3 py-1.5 rounded-full bg-[#a8b89c]/20 text-[#2d4a2b]">Master BEE</span>
+            <span class="px-3 py-1.5 rounded-full bg-[#2d4a2b]/10 text-[#2d4a2b]">Licence géographie</span>
+            <span class="px-3 py-1.5 rounded-full bg-[#c9a96e]/15 text-[#8b6f47]">Folk High School Pasvik</span>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 space-y-10">
+          <div>
+            <p class="text-lg md:text-xl text-[#1a1f17] leading-relaxed mb-6">
+              J'ai co-fondé L'Archipel du Vivant en septembre 2019, à 18 ans, avec mon frère Thomas et Jean-Christophe Anna. J'en ai été co-président puis directeur stratégique jusqu'à mon départ pour la Norvège en 2023. J'y suis aujourd'hui co-président bénévole.
+            </p>
+            <p class="text-[#3c4239] leading-relaxed mb-6">
+              L'ONG a commencé comme un Wikipédia de l'écologie : informer sur les alternatives, recenser les acteurs en France. Puis elle a bifurqué vers la formation, et c'est devenu ce MOOC sur le biorégionalisme. Cinq sessions ont déjà eu lieu. La sixième arrive cet automne.
+            </p>
+            <p class="text-[#3c4239] leading-relaxed">
+              Le biorégionalisme n'est pas pour moi un sujet parmi d'autres : c'est la dimension « Monde » de tout ce que je fais. L'écologie scientifique, l'écologie politique, l'aménagement des transitions, l'engagement militant — tout converge vers cette idée qu'une société au service du vivant ne peut exister qu'à l'échelle du territoire.
+            </p>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-6">
+            <div class="bg-[#fdfcf9] rounded-2xl p-6 border border-[#e8e4d9]">
+              <div class="w-10 h-10 rounded-xl bg-[#2d4a2b]/10 flex items-center justify-center mb-4">
+                <i data-lucide="graduation-cap" class="w-5 h-5 stroke-[1.5] text-[#2d4a2b]"></i>
+              </div>
+              <h4 class="font-display text-lg text-[#1a1f17] mb-2">Écologie scientifique</h4>
+              <p class="text-sm text-[#3c4239] leading-relaxed">Master Biodiversité, Écologie, Évolution (Aix-Marseille). Stages de terrain au NIBIO en Norvège — Svanhovd (Finmark) puis Tjøtta (Nordland).</p>
+            </div>
+            <div class="bg-[#fdfcf9] rounded-2xl p-6 border border-[#e8e4d9]">
+              <div class="w-10 h-10 rounded-xl bg-[#c9a96e]/15 flex items-center justify-center mb-4">
+                <i data-lucide="map" class="w-5 h-5 stroke-[1.5] text-[#8b6f47]"></i>
+              </div>
+              <h4 class="font-display text-lg text-[#1a1f17] mb-2">Aménagement des transitions</h4>
+              <p class="text-sm text-[#3c4239] leading-relaxed">Licence de géographie humaine et sociale à Grenoble, validée en un an par VAE. Le territoire comme échelle de la transition.</p>
+            </div>
+            <div class="bg-[#fdfcf9] rounded-2xl p-6 border border-[#e8e4d9]">
+              <div class="w-10 h-10 rounded-xl bg-[#a8b89c]/20 flex items-center justify-center mb-4">
+                <i data-lucide="flame" class="w-5 h-5 stroke-[1.5] text-[#2d4a2b]"></i>
+              </div>
+              <h4 class="font-display text-lg text-[#1a1f17] mb-2">Militantisme écologiste</h4>
+              <p class="text-sm text-[#3c4239] leading-relaxed">Youth for Climate (leader local Grenoble + national), Extinction Rebellion, Soulèvements de la Terre, Alternatiba, Les Oasis, élections municipales à 19 ans.</p>
+            </div>
+            <div class="bg-[#fdfcf9] rounded-2xl p-6 border border-[#e8e4d9]">
+              <div class="w-10 h-10 rounded-xl bg-[#2d4a2b]/10 flex items-center justify-center mb-4">
+                <i data-lucide="snowflake" class="w-5 h-5 stroke-[1.5] text-[#2d4a2b]"></i>
+              </div>
+              <h4 class="font-display text-lg text-[#1a1f17] mb-2">Folk High School Pasvik</h4>
+              <p class="text-sm text-[#3c4239] leading-relaxed">Une année d'immersion en Laponie norvégienne (2023-2024), dans une culture de durabilité, low-tech et vie naturelle. Le biorégionalisme, incarné.</p>
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-br from-[#2d4a2b] to-[#3d5a3b] rounded-3xl p-8 md:p-10 text-white">
+            <i data-lucide="quote" class="w-10 h-10 stroke-[1.2] text-[#a8b89c] mb-4"></i>
+            <p class="font-display text-xl md:text-2xl leading-relaxed italic mb-6">
+              L'utopie est un devoir éthique. Les solutions écologiques ne se situent pas à l'échelle individuelle ni dans l'économie actuelle. La biorégion est une utopie concrète, et ce MOOC est l'endroit où on la rend praticable.
+            </p>
+            <div class="text-sm text-[#a8b89c] tracking-wide">— Mathieu Kuntz</div>
+          </div>
+
+          <p class="text-[#3c4239] leading-relaxed">
+            Aujourd'hui, j'anime ma propre vie multiple — spectacle d'hypnose, accompagnement, stages — mais le biorégionalisme reste au cœur de tout. C'est la raison pour laquelle je continue à présenter cette formation et à inviter les gens à la vivre. Vous la trouverez sur <a href={siteAdvUrl} target="_blank" rel="noopener" class="text-[#2d4a2b] underline underline-offset-4 hover:text-[#1a1f17] transition-colors">archipelduvivant.org</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APRÈS LE MOOC -->
+  <section class="py-24 lg:py-32 bg-[#fdfcf9]">
+    <div class="max-w-screen-xl mx-auto px-6 md:px-12">
+      <div class="max-w-3xl mb-16">
+        <span class="inline-block text-xs tracking-[0.3em] uppercase text-[#2d4a2b] mb-4">Après le MOOC</span>
+        <h2 class="font-display text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight text-[#1a1f17] mb-6">
+          Le MOOC n'est que le début.
+        </h2>
+        <p class="text-lg text-[#3c4239] leading-relaxed">
+          Une fois le MOOC terminé, vous intégrez la Communauté biorégionale, qui réunit l'ensemble des participant·e·s des sessions passées et des aventures Biotopie. Pour celles et ceux qui veulent aller plus loin, il y a l'Aventure Biotopie.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <a href={biotopieUrl} target="_blank" rel="noopener" class="group bg-white rounded-3xl p-8 border border-[#e8e4d9] hover:border-[#2d4a2b]/30 hover:shadow-lg transition-all duration-300 flex flex-col">
+          <div class="flex items-start justify-between mb-6">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#2d4a2b] to-[#3d5a3b] text-white flex items-center justify-center">
+              <i data-lucide="tent" class="w-7 h-7 stroke-[1.4]"></i>
+            </div>
+            <i data-lucide="arrow-up-right" class="w-6 h-6 stroke-[1.5] text-[#5c5c5a] group-hover:text-[#2d4a2b] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all"></i>
+          </div>
+          <h3 class="font-display text-2xl md:text-3xl text-[#1a1f17] mb-3 leading-tight">L'Aventure Biotopie</h3>
+          <p class="text-[#3c4239] leading-relaxed mb-6 flex-grow">Un stage en présentiel, immersion opérationnelle dans la mise en place d'une biorégion. La 4e édition aura lieu en avril 2027. À l'écovillage Ty Balum, en Centre-Bretagne.</p>
+          <span class="text-sm font-medium text-[#2d4a2b] tracking-wide">En savoir plus sur Biotopie →</span>
+        </a>
+
+        <div class="bg-gradient-to-br from-[#2d4a2b] to-[#3d5a3b] rounded-3xl p-8 text-white flex flex-col">
+          <div class="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center mb-6">
+            <i data-lucide="users-round" class="w-7 h-7 stroke-[1.4]"></i>
+          </div>
+          <h3 class="font-display text-2xl md:text-3xl mb-3 leading-tight">La Communauté biorégionale</h3>
+          <p class="text-[#dcd9d2] leading-relaxed mb-6 flex-grow">Réunit tous les participant·e·s du MOOC et de l'Aventure Biotopie. Un réseau vivant, géographique et humain, qui continue de grandir à chaque session. La Carte des Réhabitant·e·s vous y attend.</p>
+          <span class="text-sm font-medium text-[#c9a96e] tracking-wide">Incluse dans l'inscription</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="py-24 lg:py-32 bg-[#1a1f17] text-[#f7f6f1] relative overflow-hidden">
+    <div class="absolute inset-0 -z-0 opacity-30">
+      <div class="absolute top-[-10%] left-[-5%] w-[50vw] h-[50vw] rounded-full bg-[#2d4a2b]/40 blur-3xl animate-bio-drift"></div>
+      <div class="absolute bottom-[-10%] right-[-5%] w-[40vw] h-[40vw] rounded-full bg-[#c9a96e]/20 blur-3xl animate-bio-float"></div>
+    </div>
+
+    <div class="max-w-screen-xl mx-auto px-6 md:px-12 relative text-center">
+      <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 text-[#a8b89c] text-sm font-medium mb-8">
+        <span class="w-2 h-2 rounded-full bg-[#c9a96e] animate-pulse"></span>
+        Pré-inscriptions ouvertes
+      </span>
+
+      <h2 class="font-display text-5xl md:text-7xl lg:text-8xl leading-[1] tracking-tight mb-8 max-w-5xl mx-auto">
+        Embarquez dans l'aventure<br><span class="italic text-[#a8b89c]">biorégionale.</span>
+      </h2>
+
+      <p class="text-lg md:text-xl text-[#dcd9d2] leading-relaxed mb-12 max-w-2xl mx-auto">
+        La session 6 aura lieu du lundi 26 octobre au dimanche 13 décembre 2026. Visio de présentation : mardi 20 octobre, 12h30 à 14h. Pré-inscrivez-vous dès maintenant.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+        <a href={inscriptionUrl} target="_blank" rel="noopener" class="inline-flex bg-[#c9a96e] text-[#1a1f17] px-10 py-6 rounded-full items-center justify-center gap-3 hover:bg-white transition-all group font-medium text-lg shadow-2xl shadow-[#c9a96e]/20">
+          <span>Je me pré-inscris à la session 6</span>
+          <i data-lucide="arrow-right" class="w-6 h-6 stroke-[1.6] group-hover:translate-x-1 transition-transform"></i>
+        </a>
+        <a href={siteAdvUrl} target="_blank" rel="noopener" class="inline-flex bg-white/5 text-white px-10 py-6 rounded-full items-center justify-center gap-3 hover:bg-white/10 transition-all border border-white/20 font-medium text-lg">
+          <span>Page officielle du MOOC</span>
+          <i data-lucide="external-link" class="w-5 h-5 stroke-[1.6]"></i>
+        </a>
+      </div>
+
+      <div class="grid sm:grid-cols-3 gap-6 max-w-3xl mx-auto text-sm">
+        <div class="flex items-center justify-center gap-2 text-[#dcd9d2]">
+          <i data-lucide="calendar-days" class="w-4 h-4 stroke-[1.6] text-[#a8b89c]"></i>
+          <span>26 oct. — 13 déc. 2026</span>
+        </div>
+        <div class="flex items-center justify-center gap-2 text-[#dcd9d2]">
+          <i data-lucide="video" class="w-4 h-4 stroke-[1.6] text-[#a8b89c]"></i>
+          <span>Visio : 20 oct. 12h30</span>
+        </div>
+        <div class="flex items-center justify-center gap-2 text-[#dcd9d2]">
+          <i data-lucide="heart-handshake" class="w-4 h-4 stroke-[1.6] text-[#a8b89c]"></i>
+          <span>Participation consciente</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-24 lg:py-32">
+    <div class="max-w-3xl mx-auto px-6 md:px-12">
+      <div class="text-center mb-14">
+        <span class="inline-block text-xs tracking-[0.3em] uppercase text-[#2d4a2b] mb-4">FAQ</span>
+        <h2 class="font-display text-4xl md:text-5xl leading-tight text-[#1a1f17]">Questions fréquentes</h2>
+      </div>
+
+      <div class="space-y-3">
+        {faqs.map((f) => (
+          <details class="group bg-[#fdfcf9] rounded-2xl border border-[#e8e4d9] overflow-hidden">
+            <summary class="flex items-center justify-between gap-4 p-6 cursor-pointer list-none">
+              <h3 class="font-display text-lg md:text-xl text-[#1a1f17] leading-snug">{f.q}</h3>
+              <i data-lucide="chevron-down" class="faq-chevron w-5 h-5 stroke-[1.6] text-[#2d4a2b] shrink-0 transition-transform duration-300"></i>
+            </summary>
+            <div class="px-6 pb-6 -mt-1">
+              <p class="text-[#3c4239] leading-relaxed">{f.r}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+
+      <p class="mt-12 text-center text-sm text-[#5c5c5a]">
+        Une autre question ? Écrivez à <a href="mailto:communication@archipelduvivant.org" class="text-[#2d4a2b] underline underline-offset-4 hover:text-[#1a1f17] transition-colors">communication@archipelduvivant.org</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#1a1f17] text-[#dcd9d2] py-16">
+    <div class="max-w-screen-xl mx-auto px-6 md:px-12">
+      <div class="grid md:grid-cols-3 gap-10 mb-12">
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" class="w-7 h-7 text-[#a8b89c]">
+              <path d="M12 22c-4 0-7-2.5-7-7 0-3.5 2-5 4-7 1.2-1.2 2-3 3-5 1 2 1.8 3.8 3 5 2 2 4 3.5 4 7 0 4.5-3 7-7 7z"/>
+              <path d="M12 22V10"/>
+            </svg>
+            <span class="font-display text-xl text-white">MOOC Biorégion</span>
+          </div>
+          <p class="text-sm leading-relaxed max-w-xs">Formation en ligne sur le biorégionalisme. Créée par L'Archipel du Vivant. Présentée ici par Mathieu Kuntz, co-fondateur de l'ONG.</p>
+        </div>
+        <div>
+          <h4 class="font-display text-white mb-4 text-sm tracking-widest uppercase">Liens utiles</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="https://archipelduvivant.org" target="_blank" rel="noopener" class="hover:text-white transition-colors">archipelduvivant.org</a></li>
+            <li><a href={siteAdvUrl} target="_blank" rel="noopener" class="hover:text-white transition-colors">Page officielle du MOOC</a></li>
+            <li><a href={biotopieUrl} target="_blank" rel="noopener" class="hover:text-white transition-colors">L'Aventure Biotopie</a></li>
+            <li><a href={inscriptionUrl} target="_blank" rel="noopener" class="hover:text-white transition-colors">Pré-inscription session 6</a></li>
+            <li><a href={mrMondialisationUrl} target="_blank" rel="noopener" class="hover:text-white transition-colors">Interview « La révolution sera biorégionale »</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-display text-white mb-4 text-sm tracking-widest uppercase">L'Archipel du Vivant</h4>
+          <p class="text-sm leading-relaxed">Écovillage Ty Balum<br>4 Kernat — 22570 Plélauff<br>Kreiz Breizh, Centre-Bretagne</p>
+          <p class="text-sm mt-3">
+            <a href="mailto:contact@archipelduvivant.org" class="hover:text-white transition-colors">contact@archipelduvivant.org</a><br>
+            06 42 21 30 19
+          </p>
+        </div>
+      </div>
+
+      <div class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between gap-4 text-xs text-[#a8b89c]/60">
+        <p>Page de présentation par <a href="/" class="text-[#a8b89c] hover:text-white transition-colors underline underline-offset-4">Mathieu Kuntz</a>, co-fondateur de L'Archipel du Vivant. Tous les contenus du MOOC sont gérés par l'ONG.</p>
+        <p>Contenus sous licences libres. L'Archipel du Vivant ne vous piste pas.</p>
+      </div>
+    </div>
+  </footer>
+</BioregionLayout>

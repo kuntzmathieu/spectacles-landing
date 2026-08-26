@@ -1,0 +1,105 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description,
+  ogImage = 'https://mathieukuntz.com/og-bioregion.jpg',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="fr" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/png" href="/favicon-main.png" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-2M6V79H761');
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body
+    class="bg-[#f7f6f1] text-[#1a1f17] antialiased selection:bg-[#5d674f] selection:text-white overflow-x-hidden"
+    style="font-family: 'Inter', sans-serif;"
+  >
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  .font-display { font-family: 'Fraunces', serif; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  @keyframes bioregion-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  .animate-bio-float { animation: bioregion-float 8s ease-in-out infinite; }
+
+  @keyframes bioregion-drift {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(2%, -2%) rotate(1deg); }
+    66% { transform: translate(-2%, 1%) rotate(-1deg); }
+  }
+  .animate-bio-drift { animation: bioregion-drift 22s ease-in-out infinite; }
+
+  details > summary { list-style: none; cursor: pointer; }
+  details > summary::-webkit-details-marker { display: none; }
+  details[open] .faq-chevron { transform: rotate(180deg); }
+</style>
+
+<script>
+  lucide.createIcons();
+
+  const menuBtn = document.getElementById('bio-mobile-menu-btn');
+  const mobileMenu = document.getElementById('bio-mobile-menu');
+  let isMenuOpen = false;
+  function toggleMenu() {
+    isMenuOpen = !isMenuOpen;
+    if (isMenuOpen) {
+      mobileMenu?.classList.remove('hidden');
+      menuBtn!.innerHTML = '<i data-lucide="x" class="w-6 h-6 stroke-[1.5]"></i>';
+    } else {
+      mobileMenu?.classList.add('hidden');
+      menuBtn!.innerHTML = '<i data-lucide="menu" class="w-6 h-6 stroke-[1.5]"></i>';
+    }
+    lucide.createIcons();
+  }
+  menuBtn?.addEventListener('click', toggleMenu);
+
+  const navbar = document.getElementById('bio-navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      navbar?.classList.add('shadow-sm', 'border-[#dcdacd]/60');
+      navbar?.classList.remove('border-transparent');
+    } else {
+      navbar?.classList.remove('shadow-sm', 'border-[#dcdacd]/60');
+      navbar?.classList.add('border-transparent');
+    }
+  });
+</script>
